@@ -2,14 +2,11 @@
   <div id="wrapper">
     <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
     <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
-        </span>
+      <div class="row">
+        <div class="col-md-5">
         <system-information></system-information>
-      </div>
-
-      <div class="right-side">
+        </div>
+      <div class="col-md-7">
         <div class="doc">
           <div class="title">Getting Started</div>
           <p>
@@ -24,6 +21,7 @@
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
           <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
         </div>
+      </div>
       </div>
     </main>
   </div>
@@ -70,18 +68,6 @@
     height: auto;
     margin-bottom: 20px;
     width: 420px;
-  }
-
-  main {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  main > div { flex-basis: 50%; }
-
-  .left-side {
-    display: flex;
-    flex-direction: column;
   }
 
   .welcome {
