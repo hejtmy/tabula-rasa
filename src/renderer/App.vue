@@ -6,8 +6,8 @@
 
 <script>
   export default {
-    name: 'tabula-rasa',
-  };
+    name: 'tabula-rasa'
+  }
 </script>
 
 <style>

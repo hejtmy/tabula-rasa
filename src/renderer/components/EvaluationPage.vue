@@ -12,11 +12,11 @@
 </template>
 
 <script>
-  import Board from './EvaluationPage/Board';
-  export default {
+  import Board from './EvaluationPage/Board'
+export default {
     name: 'evaluation-page',
     components: { Board },
     methods: {
-    },
-  };
+    }
+  }
 </script>

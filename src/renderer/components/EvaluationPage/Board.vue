@@ -8,11 +8,11 @@
 <script>
 export default {
   name: 'board',
-  data() {
+  data () {
     return {
       config: {
         width: 500,
-        height: 500,
+        height: 500
       },
       configCircle: {
         x: 100,
@@ -21,8 +21,9 @@ export default {
         fill: 'red',
         stroke: 'black',
         strokeWidth: 4,
-      },
-    };
-  },
-};
+        draggable: true
+      }
+    }
+  }
+}
 </script>
