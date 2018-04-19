@@ -4,6 +4,7 @@
     <main>
       <div class="row">
         <h1> Evaluation Page</h1>
+        <board></board>
         <router-link to="landing"> Back home</router-link>
       </div>
     </main>
@@ -11,12 +12,11 @@
 </template>
 
 <script>
+  import Board from './EvaluationPage/Board';
   export default {
     name: 'evaluation-page',
+    components: { Board },
     methods: {
-      open(link) {
-        this.$electron.shell.openExternal(link);
-      },
     },
   };
 </script>
