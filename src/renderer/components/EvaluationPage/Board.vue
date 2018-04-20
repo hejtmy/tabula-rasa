@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-// import path from 'path';
+const path = require('path');
 const fs = require('fs');
 export default {
   name: 'board',
@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     openMap(src) {
+      console.log('happening');
       const img = new Image();
       img.src = src;
       this.configImage.image = img;
@@ -51,13 +52,14 @@ export default {
       (fileNames) => {
         if (fileNames === undefined) return;
         const fileName = fileNames[0];
-        console.log(fileNames);
-        fs.readFile(fileName, 'base64', (err, data) => {
+        fs.readFile(fileName, (err, data) => {
           if (err) {
-            alert(`An error ocurred reading the file :${err.message}`);
+            console.log('error');
             return;
           }
-          const img = `data:image/jpg;base64, + ${data}`;
+          const extensionName = path.extname(fileName);
+          const img64 = new Buffer(data, 'binary').toString('base64');
+          const img = `data:image/${extensionName.split('.').pop()};base64, ${img64}`;
           this.openMap(img);
           this.configCircle.fill = 'blue';
         });
