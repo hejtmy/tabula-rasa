@@ -2,8 +2,8 @@
   <div>
     <v-stage ref="stage" :config="config">
       <v-layer ref="layer">
-        <v-circle :config="configCircle"></v-circle>
         <v-image :config="configImage"></v-image>
+        <v-circle :config="configCircle"></v-circle>
       </v-layer>
     </v-stage>
     <button class="alt" @click="openMap()">Load map</button>
