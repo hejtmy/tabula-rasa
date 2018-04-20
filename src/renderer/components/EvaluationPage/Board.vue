@@ -12,7 +12,7 @@
 </template>
 <script>
 // import path from 'path';
-
+const fs = require('fs');
 export default {
   name: 'board',
   data() {
@@ -31,11 +31,11 @@ export default {
         draggable: true,
       },
       configImage: {
-        x: 100,
-        y: 100,
+        x: 0,
+        y: 0,
         image: new Image(),
-        width: 300,
-        height: 300,
+        width: 500,
+        height: 500,
       },
     };
   },
@@ -47,11 +47,20 @@ export default {
     },
     openMapFile() {
       this.$electron.remote.dialog.showOpenDialog({
-        filters: [{ name: 'text', extensions: ['txt'] }] },
+        filters: [{ name: 'jpg', extensions: ['jpg'] }] },
       (fileNames) => {
         if (fileNames === undefined) return;
         const fileName = fileNames[0];
-        this.openMap(fileName);
+        console.log(fileNames);
+        fs.readFile(fileName, 'base64', (err, data) => {
+          if (err) {
+            alert(`An error ocurred reading the file :${err.message}`);
+            return;
+          }
+          const img = `data:image/jpg;base64, + ${data}`;
+          this.openMap(img);
+          this.configCircle.fill = 'blue';
+        });
       });
     },
   },
