@@ -6,11 +6,13 @@
         <v-circle :config="configCircle"></v-circle>
       </v-layer>
     </v-stage>
-    <button class="alt" @click="openMap()">Load map</button>
-    <button class="alt" @click="doThing()">Do thig</button>
+    <button class="alt" @click="openMap('./static/tw118.jpg')">Load map</button>
+    <button class="alt" @click="openMapFile()">Do thig</button>
   </div>
 </template>
 <script>
+// import path from 'path';
+
 export default {
   name: 'board',
   data() {
@@ -38,10 +40,19 @@ export default {
     };
   },
   methods: {
-    openMap() {
+    openMap(src) {
       const img = new Image();
-      img.src = './static/tw118.jpg';
+      img.src = src;
       this.configImage.image = img;
+    },
+    openMapFile() {
+      this.$electron.remote.dialog.showOpenDialog({
+        filters: [{ name: 'text', extensions: ['txt'] }] },
+      (fileNames) => {
+        if (fileNames === undefined) return;
+        const fileName = fileNames[0];
+        this.openMap(fileName);
+      });
     },
   },
 };
