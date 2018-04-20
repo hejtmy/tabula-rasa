@@ -51,7 +51,6 @@ export default {
         const fileName = fileNames[0];
         const img = this.$electron.nativeImage.createFromPath(fileName);
         this.openMap(img.toDataURL());
-        this.configCircle.fill = 'blue';
       });
     },
   },
