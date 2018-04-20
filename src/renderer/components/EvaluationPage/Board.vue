@@ -11,8 +11,6 @@
   </div>
 </template>
 <script>
-const path = require('path');
-const fs = require('fs');
 export default {
   name: 'board',
   data() {
@@ -41,7 +39,6 @@ export default {
   },
   methods: {
     openMap(src) {
-      console.log('happening');
       const img = new Image();
       img.src = src;
       this.configImage.image = img;
@@ -52,17 +49,9 @@ export default {
       (fileNames) => {
         if (fileNames === undefined) return;
         const fileName = fileNames[0];
-        fs.readFile(fileName, (err, data) => {
-          if (err) {
-            console.log('error');
-            return;
-          }
-          const extensionName = path.extname(fileName);
-          const img64 = new Buffer(data, 'binary').toString('base64');
-          const img = `data:image/${extensionName.split('.').pop()};base64, ${img64}`;
-          this.openMap(img);
-          this.configCircle.fill = 'blue';
-        });
+        const img = this.$electron.nativeImage.createFromPath(fileName);
+        this.openMap(img.toDataURL());
+        this.configCircle.fill = 'blue';
       });
     },
   },
